@@ -45,7 +45,7 @@ function checkWin(inputArr) {
   winCondition.forEach((condition) => {
     if (condition.join("") == inputArr.join(""))
       document.querySelector(".winner").textContent =
-        "The winner is " + state.player;
+        "The winner is " + state.player + " Hora";
   });
 }
 
