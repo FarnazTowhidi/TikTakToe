@@ -1,22 +1,27 @@
-.html {
-  margin: auto;
-}
 .body {
   align-items: center;
+  background-image: url("https://static.wikia.nocookie.net/board-games-galore/images/4/47/Tictactoe-winning-vector-639732.jpg/revision/latest?cb=20160711013756");
 }
 
 h1 {
   font-family: "Permanent Marker", cursive;
 }
+
+#board {
+  margin: auto;
+  text-align: center;
+}
+
 .row {
   display: flex;
 }
 
 .cell {
   background-color: black;
+  font-size: 80px;
   color: red;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   border: 1px solid white;
   text-align: center;
 }

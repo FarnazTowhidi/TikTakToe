@@ -7,16 +7,6 @@ const state = {
   playerClickedPos: [],
   winner: "",
 };
-const winCondition = [
-  [1, 1, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 1, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 1, 1],
-  [1, 0, 0, 1, 0, 0, 1, 0, 0],
-  [0, 1, 0, 0, 1, 0, 0, 1, 0],
-  [0, 0, 1, 0, 0, 1, 0, 0, 1],
-  [1, 0, 0, 0, 1, 0, 0, 0, 1],
-  [0, 0, 1, 0, 1, 0, 1, 0, 0],
-];
 
 const ElBoard = document.getElementById("board");
 const ElCells = document.querySelectorAll(".cell");
@@ -41,12 +31,22 @@ ElBoard.addEventListener("click", function (e) {
 });
 
 function checkWin(inputArr) {
-  const ElP = document.createElement("p");
-  winCondition.forEach((condition) => {
-    if (condition.join("") == inputArr.join(""))
-      document.querySelector(".winner").textContent =
-        "The winner is " + state.player + " Hora";
-  });
+  let winFlag = false;
+
+  if (
+    (inputArr[0] && inputArr[0] == inputArr[1] && inputArr[0] == inputArr[2]) ||
+    (inputArr[3] && inputArr[3] == inputArr[4] && inputArr[3] == inputArr[5]) ||
+    (inputArr[6] && inputArr[6] == inputArr[7] && inputArr[6] == inputArr[8]) ||
+    (inputArr[0] && inputArr[0] == inputArr[3] && inputArr[0] == inputArr[6]) ||
+    (inputArr[1] && inputArr[1] == inputArr[4] && inputArr[1] == inputArr[7]) ||
+    (inputArr[2] && inputArr[2] == inputArr[5] && inputArr[2] == inputArr[8]) ||
+    (inputArr[0] && inputArr[0] == inputArr[4] && inputArr[0] == inputArr[8]) ||
+    (inputArr[2] && inputArr[2] == inputArr[4] && inputArr[2] == inputArr[6])
+  )
+    winFlag = true;
+  if (winFlag == true)
+    document.querySelector(".winner").textContent =
+      "The winner is " + state.player;
 }
 
 function switchPlayer() {
@@ -56,5 +56,7 @@ function switchPlayer() {
 function resetGame() {
   ElCells.forEach((cells, index) => {
     cells.textContent = "";
+    document.querySelector(".winner").textContent = "";
+    state.player = "X";
   });
 }
